@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-workflow-in-another-repo:
-    uses: krzycz/demo/.github/workflows/test.yml@master
+    uses: krzycz/demo/.github/workflows/test.yml@main
     with:
       param1: "Hello World!"
 
