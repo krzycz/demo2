@@ -1,0 +1,16 @@
+name: wrapper
+
+on:
+  pull_request:
+
+jobs:
+  check-description:
+    steps:
+    - name: Check description
+      run: |
+        echo ${{ github.pull_request.body }}
+  
+  call-workflow-in-another-repo:
+    uses: krzycz/demo/.github/workflows/test.yml@main
+    with:
+      param1: "Hello World!"
