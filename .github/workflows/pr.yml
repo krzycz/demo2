@@ -20,9 +20,13 @@ jobs:
           skip=1
         fi
   
-  call-workflow-in-another-repo:
+  build:
     needs: check-description
+    runs-on: ubuntu-latest
     if: ${{ needs.check-description.outputs.skip  == 0 }}
-    uses: krzycz/demo/.github/workflows/test.yml@main
-    with:
-      param1: "Hello World!"
+    steps:
+    - id: bld
+    - name: Build
+      run: |
+        echo "Hello world!"
+      
