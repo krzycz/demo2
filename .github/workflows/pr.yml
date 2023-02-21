@@ -5,6 +5,7 @@ on:
 
 jobs:
   check-description:
+    runs-on: ubuntu-latest
     steps:
     - name: Check description
       run: |
