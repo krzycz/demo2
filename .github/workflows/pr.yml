@@ -19,6 +19,4 @@ jobs:
           echo "skip build"
           skip=1
         fi
-  
-  
-      
+
