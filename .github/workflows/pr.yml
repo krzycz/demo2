@@ -5,12 +5,28 @@ on:
 
 jobs:
   check-description:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.skip }}
     steps:
+    - id: check
     - name: Check description
       run: |
-        echo ${{ github.pull_request.body }}
+        skip=0
+        echo "${{ github.event.pull_request.body }}"
+        echo "${{ github.event.pull_request.body }}" | grep "skip ci"
+        if [ $? -eq 0 ]; then
+          echo "skip build"
+          skip=1
+        fi
   
-  call-workflow-in-another-repo:
-    uses: krzycz/demo/.github/workflows/test.yml@main
-    with:
-      param1: "Hello World!"
+  build:
+    needs: check-description
+    if: ${{ needs.check-description.outputs.skip == 0 }}
+    runs-on: ubuntu-latest
+    steps:
+    - id: bld
+    - name: Build
+      run: |
+        echo "Hello world!"
+      
