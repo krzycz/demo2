@@ -11,7 +11,7 @@ jobs:
     steps:
     - id: check
     - name: Check description
-    - run: |
+      run: |
         skip=0
         echo "${{ github.event.pull_request.body }}"
         echo "${{ github.event.pull_request.body }}" | grep "skip ci"
@@ -25,5 +25,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build
-    - run: |
+      run: |
         echo "Hello world! ${{ needs.check-description.outputs.skip }}"
