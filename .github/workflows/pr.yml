@@ -20,9 +20,9 @@ jobs:
           skip=1
         fi
 
- build:
-   needs: check-description
-   runs-on: ubuntu-latest
+  build:
+    needs: check-description
+    runs-on: ubuntu-latest
     steps:
     - name: Build
     - run: |
