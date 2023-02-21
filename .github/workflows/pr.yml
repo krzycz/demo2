@@ -23,7 +23,6 @@ jobs:
   build:
     needs: check-description
     runs-on: ubuntu-latest
-    if: ${{ needs.check-description.outputs.skip  == 0 }}
     steps:
     - id: bld
     - name: Build
