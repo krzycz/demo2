@@ -12,13 +12,14 @@ function makeplot() {
 };
 
 function processData(rows) {
-  var x = [], c = [], n = [];
+  var x = [], c = [], n = [], g = [];
 
   for (var i = 0; i < rows.length; i++) {
     row = rows[i];
     x.push( row['build'] );
     c.push( row['covered'] );
     n.push( row['total'] - row['covered'] );
+    g.push( 85 );
   }
 	
 var trace1 = {
@@ -45,7 +46,23 @@ var trace2 = {
   },
 };
 
-var data = [ trace1, trace2 ];
+	
+var trace3 = {
+  x: x,
+  y: g,
+  dx: 1,
+  dy: 1,
+  y0: 0,
+  name: 'goal',
+  type: 'scatter',
+  line: { 
+	dash: 'dash',
+	color: 'red',
+	shape: 'linear',
+  },
+};
+	
+var data = [ trace1, trace2, trace3 ];
 var layout = {
 	barmode: 'stack',
 	title: 'Function coverage',
