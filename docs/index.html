@@ -16,9 +16,9 @@ function processData(rows) {
 
   for (var i = 0; i < rows.length; i++) {
     row = rows[i];
-    x.push( row['build'].toString(10) );
+    x.push( 'b' + row['build'].toString(10) );
     c.push( row['covered'] / row['total'] );
-    g.push( 85 );
+    g.push( 0.85 );
   }
 	
 var trace1 = {
@@ -36,10 +36,7 @@ var trace1 = {
 var trace3 = {
   x: x,
   y: g,
-  dx: 1,
-  dy: 1,
-  y0: 0,
-  name: 'goal',
+  name: 'Goal',
   type: 'scatter',
   line: { 
 	dash: 'dash',
