@@ -12,13 +12,12 @@ function makeplot() {
 };
 
 function processData(rows) {
-  var x = [], c = [], n = [], g = [];
+  var x = [], c = [], g = [];
 
   for (var i = 0; i < rows.length; i++) {
     row = rows[i];
-    x.push( row['build'] );
-    c.push( row['covered'] );
-    n.push( row['total'] - row['covered'] );
+    x.push( row['build'].toString(10) );
+    c.push( row['covered'] / row['total'] );
     g.push( 85 );
   }
 	
@@ -34,19 +33,6 @@ var trace1 = {
   },
 };
 
-var trace2 = {
-  x: x,
-  y: n,
-  name: 'Not covered',
-  type: 'bar',
-  line: { 
-    dash: 'solid',
-    color: 'red',
-    shape: 'linear',
-  },
-};
-
-	
 var trace3 = {
   x: x,
   y: g,
@@ -62,18 +48,18 @@ var trace3 = {
   },
 };
 	
-var data = [ trace1, trace2, trace3 ];
+var data = [ trace1, trace3 ];
 var layout = {
 	barmode: 'stack',
 	title: 'Code coverage',
 	xaxis: {
           title: 'Build',
           showgrid: false,
-          zeroline: false
+          zeroline: false,
         },
         yaxis: {
           title: 'Function coverage',
-          showline: false
+          showline: false,
         },
 };
 
