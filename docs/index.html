@@ -20,25 +20,39 @@ function processData(rows) {
     c.push( row['covered'] );
     n.push( row['total'] - row['covered'] );
   }
-    
-  var plotDiv = document.getElementById("chart");
-  var traces = [{
-    x: x,
-    y: y,
-    dx: 1,
-    dy: 1,
-    y0: 0,
-    name: 'function coverage',
-    type: 'bar',
-    line: { 
-	    dash: 'solid',
-	    color: 'blue',
-	    shape: 'linear',
-    },
-  }];
+	
+var trace1 = {
+  x: x,
+  y: c,
+  name: 'Covered',
+  type: 'bar',
+  line: { 
+    dash: 'solid',
+    color: 'green',
+    shape: 'linear',
+  },
+};
 
-  Plotly.newPlot(plotDiv, traces,
-    { title: 'Function coverage'} );
+var trace2 = {
+  x: x,
+  y: n,
+  name: 'Not covered',
+  type: 'bar',
+  line: { 
+    dash: 'solid',
+    color: 'red',
+    shape: 'linear',
+  },
+};
+
+var data = [ trace1, trace2 ];
+var layout = {
+	barmode: 'stack',
+	title: 'Function coverage',
+};
+
+  var plotDiv = document.getElementById("chart");
+  Plotly.newPlot(plotDiv, traces, layout);
 }
   
 makeplot();
