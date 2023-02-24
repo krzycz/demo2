@@ -65,7 +65,16 @@ var trace3 = {
 var data = [ trace1, trace2, trace3 ];
 var layout = {
 	barmode: 'stack',
-	title: 'Function coverage',
+	title: 'Code coverage',
+	xaxis: {
+          title: 'Build',
+          showgrid: false,
+          zeroline: false
+        },
+        yaxis: {
+          title: 'Function coverage',
+          showline: false
+        },
 };
 
   var plotDiv = document.getElementById("chart");
