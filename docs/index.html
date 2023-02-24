@@ -6,6 +6,11 @@
 </body>
 <script>
 
+	
+function makeplot() {
+  Plotly.d3.csv("https://krzycz.github.io/demo2/data.csv", function(data){ processData(data) } );
+};
+
 function processData(rows) {
   var x = [], c = [], n = [];
 
@@ -36,10 +41,6 @@ function processData(rows) {
     { title: 'Function coverage'} );
 }
   
-function makeplot() {
-  Plotly.d3.csv("https://krzycz.github.io/demo2/data.csv", function(data){ processData(data) } );
-};
-
 makeplot();
 
 </script>
