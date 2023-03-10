@@ -2,9 +2,6 @@ name: rerun
 
 on:
   workflow_run:
-    workflows:
-      - pr
-      - 'nightly*'
     types:
       - completed
 
