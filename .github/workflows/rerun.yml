@@ -10,7 +10,7 @@ on:
 
 jobs:
   rerun_failed_jobs:
-    runs-on: [ self-hosted ]
+    runs-on: [ ubuntu-latest ]
     if: ${{ github.event.workflow_run.run_attempt == "1" }}
     steps:
       - name: foo
