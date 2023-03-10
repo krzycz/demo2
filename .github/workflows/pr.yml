@@ -1,15 +1,12 @@
-name: wrapper
+name: pr
 
 on:
   pull_request:
 
 jobs:
-  check-description:
+  check:
     runs-on: ubuntu-latest
-    outputs:
-      skip: ${{ steps.check.skip }}
     steps:
-      - id: check
       - name: Check description
         run: |
           exit 1
