@@ -2,6 +2,7 @@ name: rerun
 
 on:
   workflow_run:
+    workflows: wrapper
     types:
       - completed
 
