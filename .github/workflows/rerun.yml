@@ -2,14 +2,14 @@ name: rerun
 
 on:
   workflow_run:
-    workflows: wrapper
+    workflows: pr
     types:
       - completed
 
 jobs:
   rerun_failed_jobs:
     runs-on: [ ubuntu-latest ]
-    if: ${{ github.event.workflow_run.run_attempt == "1" }}
+    if: ${{ github.event.workflow_run.run_attempt == 1 }}
     steps:
       - name: foo
         run: |
