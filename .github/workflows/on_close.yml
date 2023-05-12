@@ -1,0 +1,16 @@
+name: close_test
+
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo ${{ github.ref }}
+          echo ${{ github.event_name }}
+          echo ${{ github.event.action }} 
+          echo ${{ github.event.pull_request.merged }}
