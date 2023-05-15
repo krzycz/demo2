@@ -1,0 +1,34 @@
+name: pr
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+
+      - name: Get params
+        run: |
+          echo "foo"
+          MATRIX="[ { "xxx": 1, "debug": 1 }, { "xxx": 0, "debug": 1 }, { "xxx": 1, "debug": 0 } ]"
+          echo "MATRIX=$MATRIX" >> $GITHUB_ENV
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix: ${{ env.MATRIX }}
+
+    steps:
+      - name: Build it
+        run: |
+          echo "DEBUG=${{ matrix.debug }} XXX=${{ matrix.xxx }}"
