@@ -10,25 +10,31 @@ jobs:
   prep:
     runs-on: ubuntu-latest
 
+    outputs:
+      JSON: ${{ steps.set-matrix.outputs.matrix }}
+
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 100
 
-      - name: Get params
+      - id: set-matrix
+        name: Prepare matrix
         run: |
-          echo "foo"
-          MATRIX="[ { "xxx": 1, "debug": 1 }, { "xxx": 0, "debug": 1 }, { "xxx": 1, "debug": 0 } ]"
-          echo "MATRIX=$MATRIX" >> $GITHUB_ENV
+          echo "JSON=\"[ { \"xxx\": 1 }, { \"xxx\": 0 } ]\"" >> "$GITHUB_OUTPUT"
+          echo "OUT: "
+          cat "$GITHUB_OUTPUT"
 
   build:
+    needs: prep
+
     runs-on: ubuntu-latest
 
     strategy:
-      matrix: ${{ env.MATRIX }}
+      matrix: ${{ fromJson(needs.prep.outputs.JSON) }}
 
     steps:
       - name: Build it
         run: |
-          echo "DEBUG=${{ matrix.debug }} XXX=${{ matrix.xxx }}"
+          echo "XXX=${{ matrix.xxx }}"
