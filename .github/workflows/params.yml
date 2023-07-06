@@ -15,7 +15,7 @@ on:
       matrix:
         required: true
         type: string
-        default: "os: [ xxx, yyy ]"
+        default: "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
 
 jobs:
   compile:
