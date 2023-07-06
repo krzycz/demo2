@@ -15,6 +15,7 @@ on:
       matrix:
         required: true
         type: string
+        default: "os: [ xxx, yyy ]"
 
 jobs:
   compile:
@@ -36,8 +37,7 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        os: ${{ fromJSON('["", ""]')[inputs.matrix] }}
+      matrix: ${{ fromJSON(inputs.matrix) }}
 
     steps:
       - name: Build
