@@ -19,30 +19,23 @@ on:
 
 jobs:
   compile:
-    runs-on: [ self-hosted, Linux, irdma, compile ]
-    timeout-minutes: 5
-
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-
     steps:
       - name: Build
         run: |
           echo "::echo::on"
-          make ${{  ${{ inputs.build_cmd }}
+          make ${{ inputs.build_cmd }}
 
   test:
-    runs-on: [ self-hosted, Linux, irdma, compile ]
-    timeout-minutes: 5
-
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(inputs.matrix) }}
-
     steps:
       - name: Build
         run: |
           echo "::echo::on"
           echo "os: ${{ os }}"
-          echo ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
-          
+         
