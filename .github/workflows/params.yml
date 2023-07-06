@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: |
           echo "::echo::on"
-          make ${{ inputs.build_cmd }}
+          echo "make ${{ inputs.build_cmd }}"
 
   test:
     runs-on: ubuntu-latest
