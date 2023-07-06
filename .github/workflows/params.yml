@@ -1,0 +1,48 @@
+name: params
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        required: true
+        type: string
+      build_cmd:
+        required: true
+        type: string
+      test_cmd:
+        required: true
+        type: string
+      matrix:
+        required: true
+        type: string
+
+jobs:
+  compile:
+    runs-on: [ self-hosted, Linux, irdma, compile ]
+    timeout-minutes: 5
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Build
+        run: |
+          echo "::echo::on"
+          make ${{  ${{ inputs.build_cmd }}
+
+  test:
+    runs-on: [ self-hosted, Linux, irdma, compile ]
+    timeout-minutes: 5
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON('["", ""]')[inputs.matrix] }}
+
+    steps:
+      - name: Build
+        run: |
+          echo "::echo::on"
+          echo "os: ${{ os }}"
+          echo ${{ fromJSON('["", ""]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+          
