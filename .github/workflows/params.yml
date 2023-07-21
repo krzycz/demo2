@@ -18,6 +18,9 @@ on:
         #default: "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
         default: '{"os":["foo", "bar"]}'
 
+env:
+  FOO: qwerty
+
 jobs:
   compile:
     runs-on: ubuntu-latest
@@ -27,6 +30,7 @@ jobs:
       - name: Build
         run: |
           echo "::echo::on"
+          echo "FOO: $FOO"
           echo "make ${{ inputs.build_cmd }}"
 
   test:
