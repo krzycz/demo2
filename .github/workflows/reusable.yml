@@ -1,0 +1,14 @@
+name: reusable
+
+on:
+  workflow_dispatch:
+    inputs:
+      param1:
+        required: true
+        type: string
+
+jobs:
+  test_reusable:
+    uses: krzycz/demo/.github/workflows/reusable.yml@master
+    with:
+      param1: ${{ inputs.param1 }}
