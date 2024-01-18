@@ -5,11 +5,11 @@ on:
 
 jobs:
   nightly1:
-    uses: krzycz/demo2/.github/workflows/reusable.yml@master
+    uses: krzycz/demo2/.github/workflows/reusable.yml@main
     with:
       param1: ex1
 
   nightly2:
-    uses: krzycz/demo2/.github/workflows/reusable.yml@master
+    uses: krzycz/demo2/.github/workflows/reusable.yml@main
     with:
       param1: ex2
