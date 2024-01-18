@@ -6,9 +6,18 @@ on:
       param1:
         required: true
         type: string
+        
+  workflow_call:
+    inputs:
+      param1:
+        required: true
+        type: string
 
 jobs:
-  test_reusable:
-    uses: krzycz/demo/.github/workflows/reusable.yml@master
-    with:
-      param1: ${{ inputs.param1 }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test1
+        run: |
+          echo "reusable: ${{ inputs.param1 }}"
+    
