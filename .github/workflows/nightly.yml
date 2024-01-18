@@ -1,0 +1,15 @@
+name: nightly
+
+on:
+  workflow_dispatch:
+
+jobs:
+  nightly1:
+    uses: krzycz/demo2/.github/workflows/reusable.yml@master
+    with:
+      param1: ex1
+
+  nightly2:
+    uses: krzycz/demo2/.github/workflows/reusable.yml@master
+    with:
+      param1: ex2
