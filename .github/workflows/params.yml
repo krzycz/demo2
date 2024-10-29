@@ -1,23 +1,25 @@
 name: params
 
+inputs: &inputs
+  branch:
+    required: true
+    type: string
+  build_cmd:
+    required: true
+    type: string
+  test_cmd:
+    required: true
+    type: string
+  matrix:
+    required: true
+    type: string
+    #default: "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+    default: '{ "os": [ "foo", "bar" ] }'
+
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        required: true
-        type: string
-      build_cmd:
-        required: true
-        type: string
-      test_cmd:
-        required: true
-        type: string
-      matrix:
-        required: true
-        type: string
-        #default: "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
-        default: '{"os":["foo",
-                         "bar"]}'
+      <<: *inputs
 
 env:
   FOO: qwerty
