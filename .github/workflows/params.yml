@@ -16,7 +16,8 @@ on:
         required: true
         type: string
         #default: "{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
-        default: '{"os":["foo", "bar"]}'
+        #default: '{"os":["foo", "bar"]}'
+        default: '{ os : [ foo ,  bar ] }'
 
 env:
   FOO: qwerty
