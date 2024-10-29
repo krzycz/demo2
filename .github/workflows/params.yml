@@ -15,7 +15,7 @@ on:
       matrix:
         required: true
         type: string
-        default: '{ "os": [ "foo", "bar" ] }'
+        default: 'os=["foo", "bar"]'
 
 env:
   FOO: qwerty
@@ -50,7 +50,8 @@ jobs:
     needs: prep
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.prep.outputs.matrix) }}
+      matrix:
+        os: ${{ fromJSON(needs.prep.outputs.matrix) }}
     steps:
       - name: Build
         run: |
