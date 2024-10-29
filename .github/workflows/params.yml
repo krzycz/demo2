@@ -2,7 +2,7 @@ name: params
 
 on:
   workflow_dispatch:
-    inputs: &inputsx
+    inputs:
       branch:
         required: true
         type: string
