@@ -14,8 +14,8 @@ on:
         type: string
       matrix:
         required: true
-      type: string
-      default: '{ "os": [ "foo", "bar" ] }'
+        type: string
+        default: '{ "os": [ "foo", "bar" ] }'
 
 env:
   FOO: qwerty
