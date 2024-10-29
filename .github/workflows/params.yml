@@ -1,24 +1,21 @@
 name: params
 
-inputsx: &inputsx
-  branch:
-    required: true
-    type: string
-  build_cmd:
-    required: true
-    type: string
-  test_cmd:
-    required: true
-    type: string
-  matrix:
-    required: true
-    type: string
-    default: '{ "os": [ "foo", "bar" ] }'
-
 on:
   workflow_dispatch:
-    inputs:
-      <<: *inputsx
+    inputs: &inputsx
+      branch:
+        required: true
+        type: string
+      build_cmd:
+        required: true
+        type: string
+      test_cmd:
+        required: true
+        type: string
+      matrix:
+        required: true
+      type: string
+      default: '{ "os": [ "foo", "bar" ] }'
 
 env:
   FOO: qwerty
