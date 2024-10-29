@@ -21,8 +21,20 @@ env:
   FOO: qwerty
 
 jobs:
+  prep:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Matrix
+        id: matrix
+        run: |
+          echo "${{ inputs.matrix }}"
+          echo "${{ inputs.matrix }}" >> "$GITHUB_OUTPUT"
+  
   compile:
     runs-on: ubuntu-latest
+    needs: prep
     strategy:
       fail-fast: false
     steps:
@@ -35,9 +47,10 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: prep
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(inputs.matrix) }}
+      matrix: ${{ fromJSON(needs.prep.outputs.matrix) }}
     steps:
       - name: Build
         run: |
