@@ -24,4 +24,7 @@ jobs:
       - name: test1
         run: |
           echo "reusable: ${{ inputs.param1 }}"
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          echo "github.ref: ${{ github.ref }}"
     
